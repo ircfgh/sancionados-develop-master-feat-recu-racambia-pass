@@ -1,0 +1,46 @@
+﻿@model Cdmx.Scg.Sancionados.Web.Models.ViewModels.CambiaPassRecuperadoVM
+@{
+    ViewBag.Title = "Contraseña Nueva";
+    Layout = "~/Views/Shared/_InicioLayout.cshtml";
+}
+
+
+<h2>Cambio de Contraseña</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <div class="form-style">
+            <form action="@Url.Content("~/Cuenta/Recovery")" method="post">
+                @Html.HiddenFor(d => d.token)
+
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                <div class="input-group">
+                    <span class="fa fa-lock" aria-hidden="true"></span>
+                    @Html.PasswordFor(d => d.Password, new { htmlAttributes = new { placeholder = "Confirma contraseña" } })
+                </div>
+                @Html.ValidationMessageFor(d => d.Password, null, new { style = "color:red;" })
+
+                @Html.LabelFor(model => model.Password2, htmlAttributes: new { @class = "control-label" })
+                <div class="input-group">
+                    <span class="fa fa-lock" aria-hidden="true"></span>
+                    @Html.PasswordFor(d => d.Password2, new { htmlAttributes = new { placeholder = "Confirma contraseña" } })
+                </div>
+                @Html.ValidationMessageFor(d => d.Password2, null, new { style = "color:red;" })
+                <br />
+                <div class="py-3">
+                    <button class="btn btn-primary btn-block btn-submit" type="submit">Cambiar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+@*</div>*@
+}
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+
+

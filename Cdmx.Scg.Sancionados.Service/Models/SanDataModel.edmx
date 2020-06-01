@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dependencia">
+          <Key>
+            <PropertyRef Name="IdDependencia" />
+          </Key>
+          <Property Name="IdDependencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescDependencia" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Tipo" Type="char" MaxLength="1" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstadoRepublica">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="IdPais" Type="int" Nullable="false" />
+          <Property Name="DescEstado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estatus">
+          <Key>
+            <PropertyRef Name="IdEstatus" />
+          </Key>
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+          <Property Name="DescEstatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstatusImpugnacion">
+          <Key>
+            <PropertyRef Name="IdEstatusImp" />
+          </Key>
+          <Property Name="IdEstatusImp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescEstatus" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+          <Property Name="Idusuario" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstatusSancion">
+          <Key>
+            <PropertyRef Name="idEstatusSancion" />
+          </Key>
+          <Property Name="idEstatusSancion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescEstatus" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+          <Property Name="Idusuario" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Irregularidad">
+          <Key>
+            <PropertyRef Name="IdIrregular" />
+          </Key>
+          <Property Name="IdIrregular" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IrregularSancion" Type="char" MaxLength="2" />
+          <Property Name="DescIrregularidad" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+          <Property Name="Idusuario" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Municipio">
+          <Key>
+            <PropertyRef Name="IdMunicipio" />
+          </Key>
+          <Property Name="IdMunicipio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="DescMunicipio" Type="nvarchar" MaxLength="49" Nullable="false" />
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoImpugnacion">
+          <Key>
+            <PropertyRef Name="IdTipoImpugna" />
+          </Key>
+          <Property Name="IdTipoImpugna" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescTipoImpugna" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+          <Property Name="IdUsuario" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoInscrito">
+          <Key>
+            <PropertyRef Name="IdTipoInscrito" />
+          </Key>
+          <Property Name="IdTipoInscrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescTipoInscrito" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+          <Property Name="Idusuario" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoOficio">
+          <Key>
+            <PropertyRef Name="IdTipoOficio" />
+          </Key>
+          <Property Name="IdTipoOficio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescOficio" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+          <Property Name="Idusuario" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoOrigen">
+          <Key>
+            <PropertyRef Name="IdTipoOrigen" />
+          </Key>
+          <Property Name="IdTipoOrigen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescOrigen" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoSancion">
+          <Key>
+            <PropertyRef Name="IdTipoSancion" />
+          </Key>
+          <Property Name="IdTipoSancion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescTipoSancion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdEstatus" Type="bit" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Municipio__IdEst__41EDCAC5">
+          <End Role="EstadoRepublica" Type="Self.EstadoRepublica" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Municipio" Type="Self.Municipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoRepublica">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Municipio">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SanModelStoreContainer">
+          <EntitySet Name="Dependencia" EntityType="Self.Dependencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoRepublica" EntityType="Self.EstadoRepublica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estatus" EntityType="Self.Estatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstatusImpugnacion" EntityType="Self.EstatusImpugnacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstatusSancion" EntityType="Self.EstatusSancion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Irregularidad" EntityType="Self.Irregularidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Municipio" EntityType="Self.Municipio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoImpugnacion" EntityType="Self.TipoImpugnacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoInscrito" EntityType="Self.TipoInscrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoOficio" EntityType="Self.TipoOficio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoOrigen" EntityType="Self.TipoOrigen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoSancion" EntityType="Self.TipoSancion" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Municipio__IdEst__41EDCAC5" Association="Self.FK__Municipio__IdEst__41EDCAC5">
+            <End Role="EstadoRepublica" EntitySet="EstadoRepublica" />
+            <End Role="Municipio" EntitySet="Municipio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Dependencia">
+          <Key>
+            <PropertyRef Name="IdDependencia" />
+          </Key>
+          <Property Name="IdDependencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescDependencia" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstadoRepublica">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="IdPais" Type="Int32" Nullable="false" />
+          <Property Name="DescEstado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Municipio" Relationship="Self.FK__Municipio__IdEst__41EDCAC5" FromRole="EstadoRepublica" ToRole="Municipio" />
+        </EntityType>
+        <EntityType Name="Estatus">
+          <Key>
+            <PropertyRef Name="IdEstatus" />
+          </Key>
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+          <Property Name="DescEstatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstatusImpugnacion">
+          <Key>
+            <PropertyRef Name="IdEstatusImp" />
+          </Key>
+          <Property Name="IdEstatusImp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescEstatus" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+          <Property Name="Idusuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="EstatusSancion">
+          <Key>
+            <PropertyRef Name="idEstatusSancion" />
+          </Key>
+          <Property Name="idEstatusSancion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescEstatus" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+          <Property Name="Idusuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="Irregularidad">
+          <Key>
+            <PropertyRef Name="IdIrregular" />
+          </Key>
+          <Property Name="IdIrregular" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IrregularSancion" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="DescIrregularidad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+          <Property Name="Idusuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="Municipio">
+          <Key>
+            <PropertyRef Name="IdMunicipio" />
+          </Key>
+          <Property Name="IdMunicipio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="DescMunicipio" Type="String" MaxLength="49" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="EstadoRepublica" Relationship="Self.FK__Municipio__IdEst__41EDCAC5" FromRole="Municipio" ToRole="EstadoRepublica" />
+        </EntityType>
+        <EntityType Name="TipoImpugnacion">
+          <Key>
+            <PropertyRef Name="IdTipoImpugna" />
+          </Key>
+          <Property Name="IdTipoImpugna" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescTipoImpugna" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+          <Property Name="IdUsuario" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="TipoInscrito">
+          <Key>
+            <PropertyRef Name="IdTipoInscrito" />
+          </Key>
+          <Property Name="IdTipoInscrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescTipoInscrito" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+          <Property Name="Idusuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="TipoOficio">
+          <Key>
+            <PropertyRef Name="IdTipoOficio" />
+          </Key>
+          <Property Name="IdTipoOficio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescOficio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+          <Property Name="Idusuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="TipoOrigen">
+          <Key>
+            <PropertyRef Name="IdTipoOrigen" />
+          </Key>
+          <Property Name="IdTipoOrigen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescOrigen" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="TipoSancion">
+          <Key>
+            <PropertyRef Name="IdTipoSancion" />
+          </Key>
+          <Property Name="IdTipoSancion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescTipoSancion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdEstatus" Type="Boolean" Nullable="false" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <Association Name="FK__Municipio__IdEst__41EDCAC5">
+          <End Role="EstadoRepublica" Type="Self.EstadoRepublica" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Municipio" Type="Self.Municipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoRepublica">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Municipio">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbContextSan" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dependencia" EntityType="Self.Dependencia" />
+          <EntitySet Name="EstadoRepublica" EntityType="Self.EstadoRepublica" />
+          <EntitySet Name="Estatus" EntityType="Self.Estatus" />
+          <EntitySet Name="EstatusImpugnacion" EntityType="Self.EstatusImpugnacion" />
+          <EntitySet Name="EstatusSancion" EntityType="Self.EstatusSancion" />
+          <EntitySet Name="Irregularidad" EntityType="Self.Irregularidad" />
+          <EntitySet Name="Municipio" EntityType="Self.Municipio" />
+          <EntitySet Name="TipoImpugnacion" EntityType="Self.TipoImpugnacion" />
+          <EntitySet Name="TipoInscrito" EntityType="Self.TipoInscrito" />
+          <EntitySet Name="TipoOficio" EntityType="Self.TipoOficio" />
+          <EntitySet Name="TipoOrigen" EntityType="Self.TipoOrigen" />
+          <EntitySet Name="TipoSancion" EntityType="Self.TipoSancion" />
+          <AssociationSet Name="FK__Municipio__IdEst__41EDCAC5" Association="Self.FK__Municipio__IdEst__41EDCAC5">
+            <End Role="EstadoRepublica" EntitySet="EstadoRepublica" />
+            <End Role="Municipio" EntitySet="Municipio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SanModelStoreContainer" CdmEntityContainer="DbContextSan">
+          <EntitySetMapping Name="Dependencia">
+            <EntityTypeMapping TypeName="SanModel.Dependencia">
+              <MappingFragment StoreEntitySet="Dependencia">
+                <ScalarProperty Name="IdDependencia" ColumnName="IdDependencia" />
+                <ScalarProperty Name="DescDependencia" ColumnName="DescDependencia" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoRepublica">
+            <EntityTypeMapping TypeName="SanModel.EstadoRepublica">
+              <MappingFragment StoreEntitySet="EstadoRepublica">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+                <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estatus">
+            <EntityTypeMapping TypeName="SanModel.Estatus">
+              <MappingFragment StoreEntitySet="Estatus">
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="DescEstatus" ColumnName="DescEstatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstatusImpugnacion">
+            <EntityTypeMapping TypeName="SanModel.EstatusImpugnacion">
+              <MappingFragment StoreEntitySet="EstatusImpugnacion">
+                <ScalarProperty Name="IdEstatusImp" ColumnName="IdEstatusImp" />
+                <ScalarProperty Name="DescEstatus" ColumnName="DescEstatus" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="Idusuario" ColumnName="Idusuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstatusSancion">
+            <EntityTypeMapping TypeName="SanModel.EstatusSancion">
+              <MappingFragment StoreEntitySet="EstatusSancion">
+                <ScalarProperty Name="idEstatusSancion" ColumnName="idEstatusSancion" />
+                <ScalarProperty Name="DescEstatus" ColumnName="DescEstatus" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="Idusuario" ColumnName="Idusuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Irregularidad">
+            <EntityTypeMapping TypeName="SanModel.Irregularidad">
+              <MappingFragment StoreEntitySet="Irregularidad">
+                <ScalarProperty Name="IdIrregular" ColumnName="IdIrregular" />
+                <ScalarProperty Name="IrregularSancion" ColumnName="IrregularSancion" />
+                <ScalarProperty Name="DescIrregularidad" ColumnName="DescIrregularidad" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="Idusuario" ColumnName="Idusuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Municipio">
+            <EntityTypeMapping TypeName="SanModel.Municipio">
+              <MappingFragment StoreEntitySet="Municipio">
+                <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="DescMunicipio" ColumnName="DescMunicipio" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoImpugnacion">
+            <EntityTypeMapping TypeName="SanModel.TipoImpugnacion">
+              <MappingFragment StoreEntitySet="TipoImpugnacion">
+                <ScalarProperty Name="IdTipoImpugna" ColumnName="IdTipoImpugna" />
+                <ScalarProperty Name="DescTipoImpugna" ColumnName="DescTipoImpugna" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoInscrito">
+            <EntityTypeMapping TypeName="SanModel.TipoInscrito">
+              <MappingFragment StoreEntitySet="TipoInscrito">
+                <ScalarProperty Name="IdTipoInscrito" ColumnName="IdTipoInscrito" />
+                <ScalarProperty Name="DescTipoInscrito" ColumnName="DescTipoInscrito" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="Idusuario" ColumnName="Idusuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoOficio">
+            <EntityTypeMapping TypeName="SanModel.TipoOficio">
+              <MappingFragment StoreEntitySet="TipoOficio">
+                <ScalarProperty Name="IdTipoOficio" ColumnName="IdTipoOficio" />
+                <ScalarProperty Name="DescOficio" ColumnName="DescOficio" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="Idusuario" ColumnName="Idusuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoOrigen">
+            <EntityTypeMapping TypeName="SanModel.TipoOrigen">
+              <MappingFragment StoreEntitySet="TipoOrigen">
+                <ScalarProperty Name="IdTipoOrigen" ColumnName="IdTipoOrigen" />
+                <ScalarProperty Name="DescOrigen" ColumnName="DescOrigen" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoSancion">
+            <EntityTypeMapping TypeName="SanModel.TipoSancion">
+              <MappingFragment StoreEntitySet="TipoSancion">
+                <ScalarProperty Name="IdTipoSancion" ColumnName="IdTipoSancion" />
+                <ScalarProperty Name="DescTipoSancion" ColumnName="DescTipoSancion" />
+                <ScalarProperty Name="IdEstatus" ColumnName="IdEstatus" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

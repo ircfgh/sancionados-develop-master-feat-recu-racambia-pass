@@ -1,0 +1,438 @@
+﻿@model IEnumerable<System.Security.Claims.Claim>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title - CDMX - Secretaria General de la Contraloria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+    <link rel="icon" href="~/Content/Images/favicon.ico">
+    <meta name="description" content="">
+    <meta name="msapplication-tap-highlight" content="no">
+    <!--<link href="~/Content/theme.main.css" rel="stylesheet" />-->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jshead")
+
+</head>
+
+<body>
+
+    <!--<div class="app-container app-theme-white body-tabs-line fixed-sidebar fixed-header fixed-footer">-->
+    <div class="app-container app-theme-white body-tabs-line fixed-sidebar closed-sidebar-mobile closed-sidebar">
+
+        <!--Header Theme Conditionate to Responsive-->
+        <div class="app-header header-shadow">
+            <div class="app-header__logo">
+                <div class="logo-src"></div>
+                <div class="header__pane ml-auto">
+                    <div>
+                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic content-resize" data-class="closed-sidebar">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="app-header__mobile-menu">
+                <div>
+                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="app-header__menu">
+                <span>
+                    <a href="javascript:void(0)" class="text-primary mobile-toggle-header-nav">
+                        <span class="btn-icon-wrapper">
+                            <i class="fa fa-ellipsis-v fa-lg"></i>
+                        </span>
+                    </a>
+                </span>
+            </div>
+            <div class="app-header__content">
+                <div class="app-header-left">
+                    <div class="app-header-right">
+                        <div class="logo-center"></div>
+                    </div>
+                </div>
+                <div class="app-header-right">
+                    <div class="header-btn-lg pr-0">
+                        <div class="widget-content p-0">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content-left">
+                                    <div class="btn-group">
+                                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                            <!--<img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">-->
+                                            <i class="fa fa-user fa-2x opacity-8"></i>
+                                            <!--<i class="pe-7s-user-female" style="font-size:45px;"></i>-->
+
+                                            <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                        </a>
+                                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                            <h6 tabindex="-1" class="dropdown-header">Opciones de Usuario</h6>
+                                            <button type="button" tabindex="0" class="dropdown-item">Ver Perfil</button>                                            
+                                            @Html.ActionLink("Cambiar Contraseña", "Index", "CambiarPass", null, new { @class = "dropdown-item" })
+                                            <!--
+        <h6 tabindex="-1" class="dropdown-header">Header</h6>
+        <button type="button" tabindex="0" class="dropdown-item">Actions</button>
+    -->
+                                            <div tabindex="-1" class="dropdown-divider"></div>
+                                            @Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Cuenta", null, new { @class = "dropdown-item" })
+                                            @*<button type="button" tabindex="0" class="dropdown-item">Cerrar Sesión</button>*@
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-content-left  ml-3 header-user-info">
+
+                                    @using Microsoft.AspNet.Identity
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        <div class="widget-heading">
+                                            @(User.Identity.GetUserName() + "@contraloria")
+                                        </div>
+                                        <div class="widget-subheading">
+                                            
+                                            @( ((System.Security.Claims.ClaimsIdentity)User.Identity).Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Role).FirstOrDefault().Value)
+                                        
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li>@Html.ActionLink("Iniciar Sesion", "Index", "Cuenta", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                        </ul>
+                                    }
+
+                                </div>
+                                <!--Ayuda-->
+                                <div class="widget-content-left">
+                                    <div class="btn-group">
+                                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                                            <!--<i class="pe-7s-help1" style="font-size:40px; padding-left:15px"></i>-->
+                                            <i class="fa fa-question-circle fa-2x ml-4 opacity-8"></i>
+                                            <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                        </a>
+                                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                                            <h6 tabindex="-1" class="dropdown-header">Ayuda de Mantenimiento</h6>
+                                            <button type="button" tabindex="0" class="dropdown-item">Expedientes</button>
+                                            <button type="button" tabindex="0" class="dropdown-item">Reportes</button>
+                                            <div tabindex="-1" class="dropdown-divider"></div>
+                                            <h6 tabindex="-1" class="dropdown-header">Ayuda de Administración</h6>
+                                            <button type="button" tabindex="0" class="dropdown-item">Historicos</button>
+                                            <button type="button" tabindex="0" class="dropdown-item">Usuarios</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Fin de Ayuda-->
+                                <!--
+                                    <div class="widget-content-right header-user-info ml-3">
+                                -->
+                                <!--Sirve de ejemplo para abrir el panel lateral de configuracion
+                                    <a href="javascript:void(0);" class="open-options">
+                                        <i class="pe-7s-config" style="font-size:30px;"></i>
+                                    </a>
+                                -->
+                                <!--TODO: Si se descomenta solo debe ser uno u otro, uno por div
+                                    <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                        <i class="fa text-white fa-calendar pr-1 pl-1"></i>
+                                    </button>
+                                -->
+                                <!--
+                                    </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--./Header Theme-->
+        <!--
+            <button type="button" id="TooltipDemo" class="open-sidebar btn btn-warning open-options">
+                <i class="fa fa-cog fa-w-16 fa-spin fa-2x"></i>
+            </button>
+        -->
+        <!--SideBarRigth Theme-->
+        <div id="id-theme-settings" class="ui-theme-settings bg-white">
+
+            <div class="theme-settings__inner">
+                <div class="scrollbar-container">
+                    <div class="theme-settings__options-wrapper">
+                        <div class="d-flex justify-content-end themeoptions-heading">
+
+                            <div>
+                                <a href="javascript:void(0);" class="pr-3 ml-auto open-options">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="contenedor-barra-derecha">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--./SideBarRigth Theme-->
+
+        <div class="app-main">
+            <div class="app-sidebar sidebar-shadow">
+                <!--Header sidebar Theme Conditionate to Responsive-->
+                <div class="app-header__logo">
+                    <div class="logo-src"></div>
+                    <div class="header__pane ml-auto">
+                        <div>
+                            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic content-resize" data-class="closed-sidebar">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-header__mobile-menu">
+                    <div>
+                        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="app-header__menu">
+                    <span>
+                        <!--
+                        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                            <span class="btn-icon-wrapper">
+                                <i class="fa fa-ellipsis-v fa-w-6"></i>
+                            </span>
+                        </button>
+                        -->
+                        <a href="javascript:void(0)" class="text-primary mobile-toggle-header-nav">
+                            <span class="btn-icon-wrapper">
+                                <i class="fa fa-ellipsis-v fa-lg"></i>
+                            </span>
+                        </a>
+
+                    </span>
+                </div>
+                <!--./Header sidebar Theme Conditionate to Responsive-->
+                <!--Sidebar Menu Theme-->
+                <div class="scrollbar-sidebar">
+                    <div class="app-sidebar__inner">
+
+                        <!--Menu Theme-->
+                        <ul class="vertical-nav-menu">
+
+                            <!--Menu de Tableros-->
+                            @if (User.IsInRole("ADMINISTRADOR"))
+                            {
+
+                                <li class="app-sidebar__heading">Tableros</li>
+                                <li>
+                                    <a href="index.html">
+                                        <i class="metismenu-icon pe-7s-display1"></i>
+                                        Estadísticas
+                                    </a>
+                                </li>
+                            }
+                            <!--Fin Menu de Tableros-->
+                            <!--Menu de Operacion-->
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("CAPTURA"))
+                            {
+                                <li class="app-sidebar__heading">Matenimiento</li>
+
+                                <li>
+                                    <a href="@Url.Action("Index", "Busqueda", new { Area = "" })" class="mm-active">
+                                        <i class="metismenu-icon pe-7s-search">
+                                        </i>Búsqueda
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="forms-layouts.html">
+                                        <i class="metismenu-icon pe-7s-note2">
+                                        </i>Expedientes
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="forms-controls.html">
+                                        <i class="metismenu-icon pe-7s-news-paper">
+                                        </i>Reportes
+                                    </a>
+                                </li>
+
+                                if (User.IsInRole("ADMINISTRADOR"))
+                                {
+                                    <li>
+                                        <a href="#">
+                                            <i class="metismenu-icon pe-7s-albums"></i>
+                                            Catálogos
+                                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                        </a>
+                                        <ul>
+                                            <li>
+                                                <a href="elements-buttons-standard.html">
+                                                    <i class="metismenu-icon"></i>
+                                                    Estatus de Sanciónes
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="elements-dropdowns.html">
+                                                    <i class="metismenu-icon">
+                                                    </i>Tipo de Sanción
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="elements-icons.html">
+                                                    <i class="metismenu-icon">
+                                                    </i>Tipo de Impugnación
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Index", "TipoOrigen", new { Area = "Catalogos" })">
+                                                    <i class="metismenu-icon">
+                                                    </i>Tipo de Orígen
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="elements-cards.html">
+                                                    <i class="metismenu-icon">
+                                                    </i>Tipo de Inscrito
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="elements-list-group.html">
+                                                    <i class="metismenu-icon">
+                                                    </i>Tipo de Oficio
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+
+                            }
+                            <!--Fin de Menu de Operacion-->
+                            <!--Menu de Auditorias-->
+                            @if (User.IsInRole("ADMINISTRADOR"))
+                            {
+                                <li class="app-sidebar__heading">Auditorias</li>
+                                <li>
+                                    <a href="forms-validation.html">
+                                        <i class="metismenu-icon pe-7s-hourglass">
+                                        </i>Historicos
+                                    </a>
+                                </li>
+                            }
+                            <!--Fin Menu de Auditorias-->
+                            <!--Menu de Administracion Usuarios-->
+                            @if (User.IsInRole("ADMINISTRADOR"))
+                            {
+                                <li class="app-sidebar__heading">Administración</li>
+                                <li>
+                                    <a href="charts-chartjs.html">
+                                        <i class="metismenu-icon pe-7s-users">
+                                        </i>Usuarios
+                                    </a>
+                                </li>
+                            }
+                            <!--Fin Menu de Auditorias-->
+
+                        </ul>
+                        <!--./Menu Theme-->
+
+                    </div>
+                </div>
+                <!--./Sidebar Menu Theme-->
+
+            </div>
+
+            <!--Content-->
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+
+                    <!--Title Page-->
+                    <div class="app-page-title">
+                        <div class="page-title-wrapper">
+                            <div class="page-title-heading">
+                                <div class="page-title-icon">
+                                    <i class="pe-7s-@ViewBag.IconPage text-primary">
+                                    </i>
+                                </div>
+                                <div>
+                                    @ViewBag.TitlePage
+                                    <div class="page-title-subheading">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--./Title Page-->
+                    <!--Body Page-->
+                    <div class="main-card mb-3 card">
+                        <div class="card-body ">
+
+                            @RenderBody()
+
+                        </div>
+                    </div>
+                    <!--./Body Page-->
+
+                </div>
+
+                <!--Footer Theme-->
+                <div class="app-wrapper-footer">
+                    <div class="app-footer">
+                        <div class="app-footer__inner">
+                            <!--TODO: Find other method for center the image in footer-->
+                            <!--Added the class "offset-sm-5"-->
+                            <div class="row mx-auto">
+                                <div class="text-muted">
+                                    <small>Secretaría de la Controlaría General de la Ciudad de México | Sistema de Servidores Públicos Sancionados | 2020</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--./Footer Theme-->
+
+
+            </div>
+            <!--./Content-->
+
+        </div>
+    </div>
+    <!--</div>-->
+    @Scripts.Render("~/bundles/jsmain")
+    @RenderSection("jsaccordion", required: false)
+    @RenderSection("scripts", required: false)
+
+    @*<script language="javascript" type="text/javascript">
+            NProgress.start();
+            NProgress.inc();
+
+            $(document).ready(function () {
+                NProgress.done();
+            });
+        </script>*@
+</body>
+<!--
+=========================================================
+* ArchitectUI HTML Theme Dashboard - v1.0.0
+=========================================================
+* Product Page: https://dashboardpack.com
+* Copyright 2019 DashboardPack (https://dashboardpack.com)
+* Licensed under MIT (https://github.com/DashboardPack/architectui-html-theme-free/blob/master/LICENSE)
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+</html>

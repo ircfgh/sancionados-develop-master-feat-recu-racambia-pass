@@ -1,0 +1,93 @@
+﻿@model Cdmx.Scg.Sancionados.Web.Models.InicioSesionViewModel
+@{
+    ViewBag.Title = "Sistema de Servidores Públicos Sancionados";
+    Layout = "~/Views/Shared/_InicioLayout.cshtml";
+    ViewBag.ReturnUrl = "";
+}
+
+<h2>Inicio de Sesión</h2>
+<p>Ingresa la información solicitada de tu cuenta</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+    {
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            @foreach (var modelError in Html.ViewData.ModelState.SelectMany(keyValuePair => keyValuePair.Value.Errors))
+            {
+                <span>@modelError.ErrorMessage</span><br />
+            }
+        </div>
+    }
+
+    <!--Usuario-->
+    @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label" })
+    <div class="input-group">
+        <span class="fa fa-user" aria-hidden="true"></span>
+        @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { placeholder = "Ingresa tu nombre de usuario" } })
+    </div>
+    @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+
+    <!--Password-->
+    @Html.LabelFor(model => model.Contrasena, htmlAttributes: new { @class = "control-label" })
+    <div class="input-group">
+        <span class="fa fa-lock" aria-hidden="true"></span>
+        @Html.EditorFor(model => model.Contrasena, new { htmlAttributes = new { placeholder = "Ingresa tu contraseña" } })
+    </div>
+    @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
+
+    <!--Recordar Inicio sesion-->
+    @*
+        @Html.LabelFor(model => model.Recordar, htmlAttributes: new { @class = "control-label" })
+        <div class="login-check">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Recordar)
+            </div>
+            @Html.ValidationMessageFor(model => model.Recordar, "", new { @class = "text-danger" })
+        </div>
+    *@
+    <div class="py-3">
+        <button class="btn btn-primary btn-block btn-submit" type="submit">Iniciar Sesión</button>
+    </div>
+    <p class="account1">¿Olvidaste tu contraseña? @Html.ActionLink("Recupera tu contraseña aquí", "/Recuperar/index")</p>
+
+</div>
+}
+
+
+@*<form action="#" method="post">
+
+    <label>Usuario</label>
+    <div class="input-group">
+        <span class="fa fa-user" aria-hidden="true"></span>
+        <input type="text" placeholder="Enter Your Email" required="">
+    </div>
+
+    <label>Contraseña</label>
+    <div class="input-group">
+        <span class="fa fa-lock" aria-hidden="true"></span>
+        <input type="Password" placeholder="Enter Password" required="">
+    </div>
+    
+    <div class="login-check">
+        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Remember me</label>
+    </div>
+    
+    
+</form>
+<p class="account1">¿Olvidaste tu contraseña? <a href="#">Recupera tu contraseña aquí</a></p>*@
+
+
+
+
+
+@section scripts {
+
+
+
+} 

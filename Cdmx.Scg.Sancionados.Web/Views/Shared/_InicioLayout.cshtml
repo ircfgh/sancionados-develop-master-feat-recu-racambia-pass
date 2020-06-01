@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - CDMX - Secretaria General de la Contraloria</title>
+    <link rel="icon" href="~/Content/Images/favicon.ico">
+    @RenderSection("head", required: false)
+    <link href="~/Content/theme.login.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jshead")
+
+</head>
+<body>
+    <div class="signupform">
+        <div class="container">
+            <!-- main content -->
+            <!---728x90--->
+            <div class="agile_info">
+                <div class="w3l_form">
+                    <div class="left_grid_info">
+                        <h3>
+                            Sistema de Servidores <br />Públicos Sancionados
+                        </h3>
+                        <hr class="green" />
+                        <p>
+                            Secretaria de la Contraloría General de la Ciudad de México
+                        </p>
+                        <img src="@Url.Content("~/Content/Images/logoCMDXLogin.png")" alt="">
+                    </div>
+                </div>
+
+                <div class="w3_info">
+                    <!---728x90--->
+
+                    @RenderBody()
+
+                </div>
+
+            </div>
+            <!-- //main content -->
+        </div>
+        <!---728x90--->
+        <!-- footer -->
+        <div class="footer-login">
+            <div class="row mr-auto">
+                <div class="text-muted">
+                    @*<small>Secretaría de la Controlaría General de la Ciudad de México | Sistema de Servidores Públicos Sancionados | 2020</small>*@
+                </div>
+            </div>
+        </div>
+        <!-- footer -->
+    </div>
+    @Scripts.Render("~/bundles/jsmain")
+    @RenderSection("scripts", required: false)
+
+    <script language="javascript" type="text/javascript">
+            NProgress.start();
+            NProgress.inc();
+
+            $(document).ready(function () {
+                NProgress.done();
+            });
+    </script>
+</body>
+</html>

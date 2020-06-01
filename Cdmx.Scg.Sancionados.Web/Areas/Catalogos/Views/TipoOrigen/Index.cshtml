@@ -1,0 +1,71 @@
+﻿@using Cdmx.Scg.Sancionados.Web.Models
+@model IEnumerable<Cdmx.Scg.Sancionados.Web.Models.TipoOrigenViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.IconPage = "albums";
+    ViewBag.TitlePage = "Catálogo de Tipo de Orígen";
+}
+
+
+<div class="d-flex justify-content-between">
+    <label class="control-label align-bottom">
+        Búsqueda de registros <a href="javascript://" data-toggle="popover" data-trigger="focus" title="Ayuda" data-content="Captura la palabra o descripción que deseas buscar y presiona enter"><span class="fa fa-question-circle" aria-hidden="true"></span></a>
+    </label>        
+    <div>
+        <a href="javascript://" class="btn btn-primary agregar-form-nuevo" data-url="@Url.Action("Crear")">Nuevo<span class="fa fa-plus-circle ml-3" aria-hidden="true"></span></a>
+    </div>
+</div>
+
+<table id="tabla-principal"
+       class="table"
+       data-toggle="table"
+       data-url="/Catalogos/TipoOrigen/Listar/"
+       data-pagination="true"
+       data-search="true"
+       data-search-align="left"
+       data-show-search-button="true"
+       data-show-search-clear-button="true"
+       data-search-on-enter-key="true">
+    <thead>
+        <tr>
+            <th data-field="IdTipoOrigen" data-sortable="IdTipoOrigen" data-halign="center" data-align="center" data-width="10" data-width-unit="%">@Html.DisplayNameFor(model => model.IdTipoOrigen)</th>
+            <th data-field="DescOrigen" data-sortable="DescOrigen" data-halign="center">@Html.DisplayNameFor(model => model.DescOrigen)</th>
+            <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-width="10" data-width-unit="%"></th>
+        </tr>
+    </thead>
+
+</table>
+
+@section scripts{
+    <script>
+        //var $table = $('#tabla-principal')
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a class="editar ml-4 agregar-form-editar" data-url="@this.Url.Action("Editar", "TipoOrigen")/'+row.IdTipoOrigen+'" href="javascript:void(0)" title="Editar">',
+                '   <i class="fa fa-edit"></i>',
+                '</a>',
+                '<a class="eliminar ml-4" href="javascript:void(0)" title="Eliminar">',
+                '   <i class="fa fa-trash"></i>',
+                '</a>'
+            ].join('')
+        }
+
+        window.operateEvents = {
+            'click .editar': function (e, value, row, index) {
+                JsBase.agregarFormBarraLateralURL("@this.Url.Action("Editar", "TipoOrigen")/" + row.IdTipoOrigen);
+            },
+            'click .eliminar': function (e, value, row, index) {
+                JsBase.confirmarRegistroURL("@this.Url.Action("Eliminar", "TipoOrigen")/" + row.IdTipoOrigen, true, true, 'tabla-principal')
+                //window.location.href = "@this.Url.Action("Eliminar", "TipoOrigen")/" + row.IdTipoOrigen;
+            }
+        }
+    </script>
+    <script>
+        //console.log(JsBase);
+        //Llama la funcion para agregar el evento en los contenedores que tengan la clase 'agregar-form-nuevo'
+        JsBase.agregarFormBarraLateral('agregar-form-nuevo');
+    </script>
+}

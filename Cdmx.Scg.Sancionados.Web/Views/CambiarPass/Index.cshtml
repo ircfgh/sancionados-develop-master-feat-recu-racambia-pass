@@ -1,0 +1,66 @@
+﻿@model Cdmx.Scg.Sancionados.Web.Models.ChangePasswordViewModel
+@{
+    ViewBag.Title = "Cambio de Password";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.IconPage = "albums";
+    ViewBag.TitlePage = "Cambio de contraseña";
+}
+
+@using (Html.BeginForm("CambiaPass", "CambiarPass", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h6>Para modificar la contraseña ingresa la siguiente información</h6>
+    <br />
+
+    <div class="form-horizontal">
+
+        @*<div class="input-group">*@
+        @*@Html.LabelFor(model => model.OldPassword, htmlAttributes: new { @class = "control-label" })*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.OldPassword, htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.EditorFor(model => model.OldPassword, new { htmlAttributes = new { @class = "form-control col-md-4" } })
+                @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        @*@Html.LabelFor(model => model.NewPassword, htmlAttributes: new { @class = "control-label" })*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.NewPassword, htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control col-md-4" } })
+                @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        @*@Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label" })*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label" })
+            <div>
+                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control col-md-4" } })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="input-group">
+            <div class="py-3">
+                <button class="btn btn-primary btn-block btn-submit" type="submit">Cambiar Contraseña</button>
+            </div>
+        </div>*@
+        <br />
+        <div class="form-group ">
+            <div class="row">
+                <div class="ml-5">
+                    <button type="reset" class="btn btn-light ml-2 mr-sm-5">Limpiar<span class="fa fa-broom ml-3"></span></button>
+                    <button type="submit" class="btn btn-primary ml-2 mr-5">Actualizar<span class="fa fa-save ml-3"></span></button>
+                </div>
+            </div>
+        </div>
+
+    </div> 
+    }
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

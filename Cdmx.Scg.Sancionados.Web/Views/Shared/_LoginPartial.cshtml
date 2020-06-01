@@ -1,0 +1,60 @@
+﻿@*
+    @using Microsoft.AspNet.Identity
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            </ul>
+        }
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }*@
+
+
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        @*<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;@Html.Raw(User.Identity.GetUserName())@@contraloria<span class="caret"></span>*@
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;@Html.Raw(User.Identity.GetUserName())<span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="#">Evento Uno</a></li>
+        <li><a href="#">Otro Evento</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Separador</a></li>
+    </ul>
+
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Iniciar Sesion", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+
+
+@*<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+   aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;usuario@contraloria<span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+    <li><a href="#">Evento Uno</a></li>
+    <li><a href="#">Otro Evento</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separador</a></li>
+</ul>*@
+
